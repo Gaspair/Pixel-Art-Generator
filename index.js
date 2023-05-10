@@ -45,13 +45,13 @@ gridButton.addEventListener("click", () => {
   let count = 0;
   for (let i = 0; i < gridHeight.value; i++) {
     count += 2;
-    let div = document.createEvent("div");
+    let div = document.createElement("div");
     div.classList.add("gridRow");
 
     for (let j = 0; j < gridWidth.value; j++) {
       count += 2;
-      let col = document.createEvent("div");
-      co.classList.add("gridRow");
+      let col = document.createElement("div");
+      col.classList.add("gridCol");
       col.setAttribute("id", `gridCol${count}`);
       col.addEventListener(events[deviceType].down, () => {
         draw = true;
@@ -63,10 +63,9 @@ gridButton.addEventListener("click", () => {
       });
       col.addEventListener(events[deviceType].move, (e) => {
         let elementId = document.elementFromPoint(
-            !isTouchDevice() ? e.clientX : e.touches[0].clientX,
-            !isTouchDevice() ? e.clientY : e.touches[0].clientY
-          ),
-          id;
+          !isTouchDevice() ? e.clientX : e.touches[0].clientX,
+          !isTouchDevice() ? e.clientY : e.touches[0].clientY
+        ).id;
         checker(elementId);
       });
 
